@@ -44,11 +44,13 @@ class GestorTareas:
             print(f"❌ Error: El email {email} ya está registrado")
             return None
     
-    def obtener_usuario(self, usuario_id: str) -> Optional[Dict]:
-        """Obtener usuario por ID"""
+    def obtener_usuario2(self, email: str, pass1: str) -> Optional[Dict]:
+        """Obtener usuario por correo"""
         try:
-            usuario = self.usuarios.find_one({"_id": ObjectId(usuario_id)})
-            if usuario:
+            correo = self.usuarios.find_one({"email": ObjectId(email)})
+            if correo:
+                #Verificar el password tecleado por el usuario con la base de datos 
+                #Regresar los datos del usuario 
                 usuario['_id'] = str(usuario['_id'])
             return usuario
         except Exception as e:

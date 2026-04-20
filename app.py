@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-
+import GestorTareas 
 app = Flask(__name__)
 
 @app.route("/")
@@ -8,7 +8,12 @@ def home():
 
 @app.route("/login")
 def login():
-    return render_template("login.html")
+    gestor= GestorTareas()
+    if gestor:
+        gestor.obtener_usuario2("hola@gmail.com", "123")
+        return render_template("login.html")
+    else:
+        return render_template("error.Conection.html")
 
 @app.route("/registro")
 def registro():
