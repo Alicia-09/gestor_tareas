@@ -1,0 +1,26 @@
+{% extends "base_publica.html" %}
+
+{% block titulo %}Registro{% endblock %}
+
+{% block contenido %}
+
+<h4 class="titulo-rosa text-center mb-3">Crear cuenta</h4>
+
+<form>
+
+    <input type="text" class="form-control mb-2" placeholder="Nombre" required>
+
+    <input type="email" class="form-control mb-2" placeholder="Correo" required>
+
+    <input type="password" class="form-control mb-3" placeholder="Contraseña" required>
+
+    <button class="btn boton-rosa w-100 mb-2">Registrarse</button>
+
+</form>
+
+<div class="text-center">
+    <small>¿Ya tienes cuenta?</small><br>
+    <a href="#" class="titulo-rosa">Iniciar sesión</a>
+</div>
+
+{% endblock %}

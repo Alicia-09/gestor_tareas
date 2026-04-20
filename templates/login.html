@@ -1,0 +1,24 @@
+{% extends "base_publica.html" %}
+
+{% block titulo %}Iniciar sesión{% endblock %}
+
+{% block contenido %}
+
+<h4 class="titulo-rosa text-center mb-3">Bienvenida</h4>
+
+<form>
+
+    <input type="email" class="form-control mb-2" placeholder="Correo" required>
+
+    <input type="password" class="form-control mb-3" placeholder="Contraseña" required>
+
+    <button class="btn boton-rosa w-100 mb-2">Entrar</button>
+
+</form>
+
+<div class="text-center">
+    <small>¿No tienes cuenta?</small><br>
+    <a href="#" class="titulo-rosa">Crear cuenta</a>
+</div>
+
+{% endblock %}

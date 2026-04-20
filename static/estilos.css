@@ -1,0 +1,155 @@
+/* colores principales */
+
+:root {
+    --rosa-principal: #F8B4C4;   /* rosa suave */
+    --rosa-claro: #FDECEF;       /* fondo rosita */
+    --beige: #F5EDE4;            /* toque pinterest */
+    --blanco: #FFFFFF;
+    --gris-texto: #4A4A4A;
+}
+
+/* fondo general */
+
+body {
+    background-color: var(--beige);
+    color: var(--gris-texto);
+}
+
+
+/* sidebar */
+
+.sidebar {
+    background-color: var(--blanco);
+    width: 250px;
+    height: 100vh;
+    border-right: 1px solid #eee;
+}
+
+
+/* items del menu */
+
+.menu-item {
+    color: var(--gris-texto);
+    padding: 10px;
+    border-radius: 12px;
+    display: block;
+    text-decoration: none;
+}
+
+.menu-item:hover {
+    background-color: var(--rosa-claro);
+}
+
+
+/* encabezado */
+
+.encabezado {
+    background-color: var(--blanco);
+    border-bottom: 1px solid #eee;
+}
+
+
+/* titulos */
+
+.titulo-rosa {
+    color: var(--rosa-principal);
+}
+
+
+/* botones */
+
+.boton-rosa {
+    background-color: var(--rosa-principal);
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+
+.boton-rosa:hover {
+    background-color: #f49aad;
+}
+
+
+/* tarjetas */
+
+.card-custom {
+    border: none;
+    background-color: var(--blanco);
+    border-radius: 15px;
+    padding: 12px;
+}
+
+.card-custom:hover {
+    background-color: var(--rosa-claro);
+}
+
+
+/* modal */
+
+.modal-header {
+    background-color: var(--rosa-claro);
+    border-bottom: none;
+}
+
+
+/* logo */
+
+.logo {
+    font-weight: bold;
+    font-size: 18px;
+    color: var(--rosa-principal);
+}
+
+
+/* nombre usuario */
+
+.usuario {
+    background-color: var(--rosa-claro);
+    padding: 8px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+
+/* espacios */
+
+.padding {
+    padding: 20px;
+}
+
+.badge {
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.card-custom {
+    transition: 0.2s;
+}
+
+.card-custom:hover {
+    background-color: #FDECEF;
+}
+
+/* boton eliminar */
+
+.btn-eliminar {
+    text-decoration: none;
+    font-size: 18px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+/* hover rosita suave */
+
+.btn-eliminar:hover {
+    background-color: #FDECEF;
+    transform: scale(1.1);
+}
+
+.card-login {
+    width: 350px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
