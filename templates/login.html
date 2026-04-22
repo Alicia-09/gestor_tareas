@@ -1,24 +1,53 @@
 {% extends "base_publica.html" %}
-
 {% block titulo %}Iniciar sesión{% endblock %}
-
 {% block contenido %}
 
-<h4 class="titulo-rosa text-center mb-3">Bienvenida</h4>
+<div class="login-container">
+  <div class="card-login bg-white p-4">
+    <h4 class="titulo-rosa text-center mb-3">Bienvenida</h4>
 
-<form>
+    <form method="POST">
+      <!-- correo -->
+      <div class="mb-3">
+        <label for="Email" class="form-label"></label>
+        <input
+          type="email"
+          class="form-control"
+          id="Email"
+          name="Email"
+          placeholder="Correo electrónico"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          value="{{ request.form.get('Email', '')}}"
+          required
+        />
+      </div>
 
-    <input type="email" class="form-control mb-2" placeholder="Correo" required>
+      <!-- contraseña -->
+      <div class="mb-3">
+        <label for="Contra" class="form-label"></label>
 
-    <input type="password" class="form-control mb-3" placeholder="Contraseña" required>
+        <input
+          type="password"
+          class="form-control"
+          id="Contra"
+          name="Contra"
+          placeholder="Contraseña"
+          aria-describedby="passwordHelp"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          title="Debe contener al menos un número, una mayúscula, una minúscula y al menos 8 caracteres"
+          required/>
+      </div>
 
-    <button class="btn boton-rosa w-100 mb-2">Entrar</button>
+      <!-- boton -->
+      <button type="submit" class="btn boton-rosa w-100 mb-2">Entrar</button>
+    </form>
 
-</form>
-
-<div class="text-center">
-    <small>¿No tienes cuenta?</small><br>
-    <a href="#" class="titulo-rosa">Crear cuenta</a>
+    <!-- registro -->
+    <div class="text-center">
+      <small>¿No tienes cuenta?</small><br />
+      <a href="#" class="titulo-rosa">Crear cuenta</a>
+    </div>
+  </div>
 </div>
 
 {% endblock %}

@@ -9,12 +9,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
-<body class="d-flex justify-content-center align-items-center vh-100">
+<body>
+<!-- barra superior -->
+    <nav class="navbar encabezado shadow-sm">
+        <div class="container justify-content-center">
+
+            <a class="navbar-brand d-flex align-items-center titulo-rosa m-0">
+                <img src="{{ url_for('static', filename='img/logotipo.png') }}"
+                    alt="logo"
+                    class="logo-img me-2">
+                    Gestor de tareas
+            </a>
+
+        </div>
+    </nav>
 
     <div class="card-custom">
         {% block contenido %}
         {% endblock %}
     </div>
+
 
 </body>
 </html>
