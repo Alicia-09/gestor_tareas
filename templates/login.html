@@ -6,7 +6,22 @@
   <div class="card-login bg-white p-4">
     <h4 class="titulo-rosa text-center mb-3">Bienvenida</h4>
 
-    <form method="POST">
+    <div class="container mt-2">
+                            {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                            {% for category, message in messages %}
+                            <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }} alert-dismissible fade show"
+                                role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                        </div>
+
+    <form method="POST" action="{{ url_for('ValidaSesion') }}">
       <!-- correo -->
       <div class="mb-3">
         <label for="Email" class="form-label"></label>
@@ -45,7 +60,7 @@
     <!-- registro -->
     <div class="text-center">
       <small>¿No tienes cuenta?</small><br />
-      <a href="#" class="titulo-rosa">Crear cuenta</a>
+      <a href="registro.html" class="titulo-rosa">Crear cuenta</a>
     </div>
   </div>
 </div>

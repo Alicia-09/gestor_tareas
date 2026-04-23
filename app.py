@@ -1,19 +1,43 @@
-from flask import Flask, render_template
-import GestorTareas 
+from flask import Flask, render_template,request,flash,url_for,redirect,session
+import requests
+
+from GestorTareas import GestorTareas
 app = Flask(__name__)
+app.secret_key = "Ali091903."
 
 @app.route("/")
 def home():
-    return render_template("inicio.html")
+    return render_template("login.html")
 
 @app.route("/login")
 def login():
-    gestor= GestorTareas()
-    if gestor:
-        gestor.obtener_usuario2("hola@gmail.com", "123")
-        return render_template("login.html")
-    else:
-        return render_template("error.Conection.html")
+    return render_template("login.html")
+    
+@app.route('/ValidaSesion', methods=['GET', 'POST'])
+def ValidaSesion():
+    if request.method == "POST":
+        email = request.form.get('Email', '').strip()
+        contra = request.form.get('Contra', '').strip()
+
+        if not email or not contra:
+            flash('Por favor ingresa email y contraseña', 'error')
+            return redirect(url_for('login'))
+
+        gestor = GestorTareas()
+        usuario = gestor.obtener_usuario2(email, contra)
+
+        if not usuario:
+            flash('Usuario o contraseña incorrectos', 'error')
+            return redirect(url_for('login'))
+
+        session['usuario_email'] = email
+        session['usuario'] = usuario['nombre']
+        session['loggeado'] = True
+
+        flash(f"Bienvenido {usuario['nombre']}!", 'success')
+        return redirect(url_for('inicio'))
+
+    return redirect(url_for('login'))
 
 @app.route("/registro")
 def registro():

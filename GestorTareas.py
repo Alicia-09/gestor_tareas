@@ -45,14 +45,15 @@ class GestorTareas:
             return None
     
     def obtener_usuario2(self, email: str, pass1: str) -> Optional[Dict]:
-        """Obtener usuario por correo"""
         try:
-            correo = self.usuarios.find_one({"email": ObjectId(email)})
-            if correo:
-                #Verificar el password tecleado por el usuario con la base de datos 
-                #Regresar los datos del usuario 
+            usuario = self.usuarios.find_one({"email": email})
+
+            if usuario and usuario["password"] == pass1:
                 usuario['_id'] = str(usuario['_id'])
-            return usuario
+                return usuario
+
+            return None
+
         except Exception as e:
             print(f"Error al obtener usuario: {e}")
             return None
