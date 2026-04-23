@@ -1,35 +1,25 @@
-/* colores principales */
-
-:root {
-    --rosa-principal: #F8B4C4;   /* rosa suave */
-    --rosa-claro: #FDECEF;       /* fondo rosita */
-    --beige: #F5EDE4;            /* toque pinterest */
-    --blanco: #FFFFFF;
-    --gris-texto: #4A4A4A;
-}
-
 /* fondo general */
 
 body {
-    background-color: var(--beige);
-    color: var(--gris-texto);
+    background-color: #F5EDE4;
+    color: #4A4A4A;
 }
 
 
 /* sidebar */
 
 .sidebar {
-    background-color: var(--blanco);
+    background-color: #FFFFFF;
     width: 250px;
     height: 100vh;
     border-right: 1px solid #eee;
 }
 
 
-/* items del menu */
+/* menu */
 
 .menu-item {
-    color: var(--gris-texto);
+    color: #4A4A4A;
     padding: 10px;
     border-radius: 12px;
     display: block;
@@ -37,14 +27,14 @@ body {
 }
 
 .menu-item:hover {
-    background-color: var(--rosa-claro);
+    background-color: #FDECEF;
 }
 
 
 /* encabezado */
 
 .encabezado {
-    background-color: var(--blanco);
+    background-color: #FFFFFF;
     border-bottom: 1px solid #eee;
 }
 
@@ -52,17 +42,18 @@ body {
 /* titulos */
 
 .titulo-rosa {
-    color: var(--rosa-principal);
+    color: #F8B4C4;
 }
 
 
 /* botones */
 
 .boton-rosa {
-    background-color: var(--rosa-principal);
+    background-color: #F8B4C4;
     color: white;
     border: none;
     border-radius: 10px;
+    padding: 8px 12px;
 }
 
 .boton-rosa:hover {
@@ -74,20 +65,21 @@ body {
 
 .card-custom {
     border: none;
-    background-color: var(--blanco);
+    background-color: #FFFFFF;
     border-radius: 15px;
     padding: 12px;
+    transition: 0.2s;
 }
 
 .card-custom:hover {
-    background-color: var(--rosa-claro);
+    background-color: #FDECEF;
 }
 
 
 /* modal */
 
 .modal-header {
-    background-color: var(--rosa-claro);
+    background-color: #FDECEF;
     border-bottom: none;
 }
 
@@ -97,22 +89,25 @@ body {
 .logo {
     font-weight: bold;
     font-size: 18px;
-    color: var(--rosa-principal);
+    color: #F8B4C4;
 }
 
-/* imagen del logo */
 .logo-img {
     height: 40px;
 }
+
+
+/* navbar */
 
 .navbar {
     padding: 10px 0;
 }
 
-/* nombre usuario */
+
+/* usuario */
 
 .usuario {
-    background-color: var(--rosa-claro);
+    background-color: #FDECEF;
     padding: 8px;
     border-radius: 10px;
     font-size: 14px;
@@ -125,21 +120,17 @@ body {
     padding: 20px;
 }
 
+
+/* badge */
+
 .badge {
     border-radius: 10px;
     padding: 5px 10px;
     font-size: 12px;
 }
 
-.card-custom {
-    transition: 0.2s;
-}
 
-.card-custom:hover {
-    background-color: #FDECEF;
-}
-
-/* boton eliminar */
+/* eliminar */
 
 .btn-eliminar {
     text-decoration: none;
@@ -149,12 +140,13 @@ body {
     transition: 0.2s;
 }
 
-/* hover rosita suave */
-
 .btn-eliminar:hover {
     background-color: #FDECEF;
     transform: scale(1.1);
 }
+
+
+/* login */
 
 .card-login {
     width: 350px;
@@ -162,3 +154,9 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
+
+/* navbar img */
+
+.navbar img {
+    width: 100px;
+}
