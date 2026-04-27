@@ -14,11 +14,8 @@
 
     <nav class="navbar bg-white shadow-sm">
         <div class="container d-flex justify-content-center align-items-center">
-
-            <!-- Logo -->
             <img src="{{ url_for('static', filename='img/logotipo.png') }}" alt="Logo" class="me-2">
 
-            <!-- Título dinámico -->
             <h5 class="mb-0 titulo-rosa">
                 {% block titulo %}{% endblock %}
             </h5>

@@ -39,8 +39,26 @@ def ValidaSesion():
 
     return redirect(url_for('login'))
 
-@app.route("/registro")
+@app.route("/registro", methods=["GET", "POST"])
 def registro():
+    if request.method == "POST":
+        nombre = request.form.get("Nombre")  
+        apellido = request.form.get("Apellido")      
+        email = request.form.get("Email")      
+        contra = request.form.get("Contra")     
+        contraConfirm = request.form.get("ContraConfirm") 
+
+        if contra != contraConfirm:
+            flash("La contraseña no coincide", "error")
+            return render_template("registro.html")
+        
+        session['usuario_email'] = email
+        session['usuario'] = nombre
+        session['loggeado'] = True
+
+        flash(f"Cuenta creada correctamente para el usuario:{nombre} {apellido}", "success")
+        return redirect(url_for("inicio"))
+
     return render_template("registro.html")
 
 @app.route("/inicio")
