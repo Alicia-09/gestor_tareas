@@ -1,9 +1,9 @@
 from flask import Flask, render_template,request,flash,url_for,redirect,session
-import requests
+import requests 
 
 from GestorTareas import GestorTareas
 app = Flask(__name__)
-app.secret_key = "Ali091903."
+app.secret_key = "ibdr091903."
 
 @app.route("/")
 def home():
@@ -52,12 +52,15 @@ def registro():
             flash("La contraseña no coincide", "error")
             return render_template("registro.html")
         
-        session['usuario_email'] = email
-        session['usuario'] = nombre
-        session['loggeado'] = True
+        gestor = GestorTareas()
+        resultado = gestor.crear_usuario(nombre, email, contra)
+        
+        if not resultado:
+            flash("Ya existe una cuenta con ese correo", "error")
+            return render_template("registro.html")
 
         flash(f"Cuenta creada correctamente para el usuario:{nombre} {apellido}", "success")
-        return redirect(url_for("inicio"))
+        return redirect(url_for("login"))
 
     return render_template("registro.html")
 

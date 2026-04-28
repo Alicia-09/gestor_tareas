@@ -4,6 +4,10 @@ from bson.objectid import ObjectId
 from datetime import datetime, timedelta
 from typing import Optional, List, Dict
 import os
+from cryptography.fernet import Fernet 
+
+clave = b'w4D1DFuM0HB_AQvNKVUGyqYOBfmD-ViDaod-b2C4y7g='
+f = Fernet(clave)
 
 class GestorTareas:
     def __init__(self, uri: str = 'mongodb://localhost:27017/'):
@@ -28,14 +32,34 @@ class GestorTareas:
         self.tareas.create_index([("usuario_id", 1), ("fecha_creacion", -1)])
         self.tareas.create_index("estado")
     
+    def encriptar_password(self, password):
+        password_bytes = password.encode()
+        """Convierte texto a bytes"""
+        password_encriptado = f.encrypt(password_bytes)
+        """Encripta la contraseña"""
+        return password_encriptado.decode()
+    """la vuelve a convertir en texto y se guarda en mongo"""
+    
+    def desencriptar_password(self, password_encriptado):
+        """Recibe la contra encriptada de la bd"""
+        password_bytes = password_encriptado.encode()
+        """la convierte en bytes"""
+        password_desencriptado = f.decrypt(password_bytes)
+        """la desencripta"""
+        return password_desencriptado.decode()
+    """la regresa como texto normal"""
+
     def crear_usuario(self, nombre: str, email: str, password: str) -> Optional[str]:
         """Crear un nuevo usuario"""
         """agregue contra"""
         try:
+            password_encriptado = self.encriptar_password(password)
+
             resultado = self.usuarios.insert_one({
                 "nombre": nombre,
                 "email": email,
-                "password": password,  
+                "password": password_encriptado,
+                """Guardamos la contra encriptada"""  
                 "fecha_registro": datetime.now(),
                 "activo": True
             })
@@ -47,8 +71,13 @@ class GestorTareas:
     def obtener_usuario2(self, email: str, pass1: str) -> Optional[Dict]:
         try:
             usuario = self.usuarios.find_one({"email": email})
-
-            if usuario and usuario["password"] == pass1:
+            
+            if not usuario:
+                return None
+            """desencriptamos la contra guardada"""
+            password_guardada = self.desencriptar_password(usuario ["password"])
+            """comparamos contraseñas"""
+            if password_guardada == pass1:
                 usuario['_id'] = str(usuario['_id'])
                 return usuario
 

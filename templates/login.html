@@ -12,9 +12,8 @@
                             {% for category, message in messages %}
                             <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }} alert-dismissible fade show"
                                 role="alert">
-                                {{ message }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
+                                {{ message }} 
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                             {% endfor %}
                             {% endif %}
@@ -51,6 +50,8 @@
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
           title="Debe contener al menos un número, una mayúscula, una minúscula y al menos 8 caracteres"
           required/>
+        <button class="btn btn-outline-secondary" type="button" onclick="togglePassword()">
+        </button>  
       </div>
 
       <!-- boton -->

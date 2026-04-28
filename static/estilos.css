@@ -86,11 +86,6 @@ body {
 
 /* logo */
 
-.logo {
-    font-weight: bold;
-    font-size: 18px;
-    color: #F8B4C4;
-}
 
 /* navbar */
 
@@ -153,5 +148,5 @@ body {
 /* navbar img */
 
 .navbar img {
-    width: 100px;
+    width: 150px;
 }

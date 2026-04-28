@@ -84,7 +84,7 @@ block contenido %}
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
             title=" Minimo 8 caracteres, incluye mayusculas, minusculas y un caracter
             especial"
-          />
+          required/>
         </div>
 
         <div class="mb-3">
@@ -95,7 +95,11 @@ block contenido %}
             id="ContraConfirm"
             name="ContraConfirm"
             placeholder="Confirmar contraseña"
-          />
+            aria-describedby="passwordHelp"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            title=" Minimo 8 caracteres, incluye mayusculas, minusculas y un caracter
+            especial"
+          required/>
         </div>
       </section>
 
