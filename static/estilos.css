@@ -75,6 +75,20 @@ body {
     background-color: #FDECEF;
 }
 
+/* tarjetas login */
+
+.card-custom-login {
+    border: none;
+    background-color: #F5EDE4;
+    border-radius: 15px;
+    padding: 12px;
+    transition: 0.2s;
+}
+
+.card-custom-login:hover {
+    background-color: #F8B4C4;
+}
+
 
 /* modal */
 
@@ -82,12 +96,6 @@ body {
     background-color: #FDECEF;
     border-bottom: none;
 }
-
-
-/* logo */
-
-
-/* navbar */
 
 .navbar {
     padding: 10px 0;
@@ -119,7 +127,6 @@ body {
     font-size: 12px;
 }
 
-
 /* eliminar */
 
 .btn-eliminar {
@@ -135,18 +142,16 @@ body {
     transform: scale(1.1);
 }
 
-
 /* login */
 
 .card-login {
     width: 350px;
     border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
-
 
 /* navbar img */
 
 .navbar img {
     width: 150px;
 }
+

@@ -16,15 +16,15 @@
         <div class="container d-flex justify-content-center align-items-center">
             <img src="{{ url_for('static', filename='img/logotipo.png') }}" alt="Logo" class="me-2">
 
-            <h5 class="mb-0 titulo-rosa">
+            <h3 class="fw-bold titulo-rosa">
                 {% block titulo %}{% endblock %}
-            </h5>
+            </h3>
 
         </div>
     </nav>
 
     <div class="d-flex justify-content-center align-items-center vh-100">
-        <div class="card-custom">
+        <div class="card-custom-login">
             {% block contenido %}
             {% endblock %}
         </div>

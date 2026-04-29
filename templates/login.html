@@ -1,9 +1,7 @@
 {% extends "base_publica.html" %}
 {% block titulo %}Iniciar sesión{% endblock %}
 {% block contenido %}
-
-<div class="login-container">
-  <div class="card-login bg-white p-4">
+  <div class="card-login bg-white p-4 shadow">
     <h4 class="titulo-rosa text-center mb-3">Bienvenida</h4>
 
     <div class="container mt-2">
@@ -50,8 +48,6 @@
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
           title="Debe contener al menos un número, una mayúscula, una minúscula y al menos 8 caracteres"
           required/>
-        <button class="btn btn-outline-secondary" type="button" onclick="togglePassword()">
-        </button>  
       </div>
 
       <!-- boton -->
@@ -64,6 +60,5 @@
       <a href="http://127.0.0.1:5000/registro" class="titulo-rosa">Crear cuenta</a>
     </div>
   </div>
-</div>
 
 {% endblock %}
