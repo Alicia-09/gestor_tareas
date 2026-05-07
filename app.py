@@ -12,6 +12,20 @@ def home():
 @app.route("/login")
 def login():
     return render_template("login.html")
+
+@app.route("/inicio")
+def inicio():
+    
+    gestor = GestorTareas()
+
+    tareas = gestor.obtener_tareas_usuario(session["usuario_id"])
+
+    return render_template("inicio.html",tareas=tareas)
+
+@app.route("/logout")
+def logout():
+    return render_template("login.html")
+
     
 @app.route('/ValidaSesion', methods=['GET', 'POST'])
 def ValidaSesion():
@@ -32,6 +46,7 @@ def ValidaSesion():
 
         session['usuario_email'] = email
         session['usuario'] = usuario['nombre']
+        session['usuario_id'] = usuario['_id']
         session['loggeado'] = True
 
         flash(f"Bienvenido {usuario['nombre']}!", 'success')
@@ -64,13 +79,46 @@ def registro():
 
     return render_template("registro.html")
 
-@app.route("/inicio")
-def inicio():
-    return render_template("inicio.html")
+@app.route("/crear_tarea", methods=["POST"])
+def crear_tarea():
 
-@app.route("/logout")
-def logout():
-    return render_template("login.html")
+    titulo = request.form.get("titulo")
+    descripcion = request.form.get("descripcion")
+    fecha_limite = request.form.get("fecha_limite")
+    prioridad = request.form.get("prioridad")
+
+    gestor = GestorTareas()
+
+    gestor.crear_tarea(
+        session["usuario_id"],
+        titulo,
+        descripcion,
+        fecha_limite,
+        prioridad
+    )
+
+    return redirect(url_for("inicio"))
+
+@app.route("/completar/<id>")
+def completar(id):
+
+    gestor = GestorTareas()
+
+    gestor.actualizar_estado_tarea(
+        id,
+        "completada"
+    )
+
+    return redirect(url_for("inicio"))
+
+@app.route("/eliminar_tarea/<id>")
+def eliminar_tarea(id):
+
+    gestor = GestorTareas()
+
+    gestor.eliminar_tarea(id)
+
+    return redirect(url_for("inicio"))
 
 if __name__ == "__main__":
     app.run(debug=True)

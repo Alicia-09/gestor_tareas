@@ -4,87 +4,130 @@
 
 {% block contenido %}
 
-<h4 class="titulo-rosa mb-3 pt-5">Bandeja de entrada</h4>
+<h4 class="titulo-rosa mb-3 pt-5">Inicio</h4>
 
 <!-- boton -->
 <button class="btn boton-rosa mb-3" data-bs-toggle="modal" data-bs-target="#modalTarea">
-    <i class="fa-solid fa-circle-plus"></i> Añadir tarea
+  <i class="fa-solid fa-circle-plus"></i> Añadir tarea
 </button>
 
-<div class="card-custom mb-2 d-flex justify-content-between align-items-center">
-  <!-- IZQUIERDA -->
+{% if tareas %}
+
+  {% for tarea in tareas %}
+
+<div class="card-custom 
+        {% if tarea.prioridad == "alta" %} prioridad-alta 
+        {% elif tarea.prioridad == "media" %} prioridad-media 
+        {% else %} prioridad-baja 
+        {% endif %} 
+        mb-2 d-flex justify-content-between align-items-center">
+
+  <!-- parte izquierda -->
   <div class="d-flex align-items-center">
-    <!-- CHECK -->
-    <a href="#" class="me-2 text-decoration-none">
-      <i class="fa-regular fa-heart fa-lg" style="color: #f8b4c4"></i>
+
+    <!-- marcar tarea completada-->
+    <a href="/completar/{{ tarea._id }}" class="me-2 text-decoration-none">
+
+      {% if tarea.estado == "completada" %}
+        <i class="fa-solid fa-circle fa-lg" style="color: #f8b4c4"></i>
+      {% else %}
+        <i class="fa-regular fa-circle fa-lg" style="color: #f8b4c4"></i>
+      {% endif %}
+
     </a>
 
-    <!-- TEXTO -->
+    <!-- datos tarea -->
     <div>
-      <strong>Título de la tarea</strong>
+      <strong>{{ tarea.titulo }}</strong>
       <br />
-      <small>Descripción de la tarea</small>
+      <small>{{ tarea.descripcion }}</small>
 
       <div class="mt-1">
         <small class="text-muted">
           <i class="fa-solid fa-calendar-days"></i>
-          20/04
+          {{ tarea.fecha_limite }}
         </small>
       </div>
     </div>
+
   </div>
 
-  <!-- DERECHA -->
+  <!-- parte derecha -->
   <div class="d-flex gap-2">
-    <!-- EDITAR -->
+
+    <!-- editar tarea -->
     <a href="#" data-bs-toggle="modal" data-bs-target="#editar1"> ✏️ </a>
 
-    <!-- ELIMINAR -->
-    <a href="#" class="btn-eliminar"> 🗑 </a>
+    <!-- eliminar tarea -->
+    <a href="/eliminar_tarea/{{ tarea._id }}" class="btn-eliminar"> 🗑 </a>
+
   </div>
+
 </div>
+
+  {% endfor %}
 
 <!-- MODAL EDITAR -->
 <div class="modal fade" id="editar1">
   <div class="modal-dialog">
     <div class="modal-content">
+
       <div class="modal-header">
         <h5 class="modal-title">Editar tarea</h5>
         <button class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
       <div class="modal-body">
-        <form>
-          <input
-            type="text"
-            class="form-control mb-2"
-            value="Título de la tarea"
-          />
 
+        <form>
+
+          <!-- titulo -->
+          <input type="text" class="form-control mb-2" value="Título de la tarea" />
+
+          <!-- descripcion -->
           <textarea class="form-control mb-2">Descripción de la tarea</textarea>
 
+          <!-- fecha -->
           <input type="date" class="form-control mb-2" />
 
-          <label>Estado</label>
-          <select class="form-control mb-3">
-            <option>Pendiente</option>
-            <option>En progreso</option>
-            <option>Completada</option>
-            <option>Cancelada</option>
-          </select>
+          <!-- estado -->
+          <label class="mb-2">Estado</label>
+
+          <div class="d-flex gap-2 mb-3 flex-wrap">
+
+            <input type="radio" name="estado" id="pendiente" class="btn-check">
+            <label for="pendiente" class="estado pendiente flex-fill">Pendiente</label>
+
+            <input type="radio" name="estado" id="progreso" class="btn-check">
+            <label for="progreso" class="estado progreso flex-fill">En progreso</label>
+
+            <input type="radio" name="estado" id="pausada" class="btn-check">
+            <label for="pausada" class="estado pausada flex-fill">Pausada</label>
+
+            <input type="radio" name="estado" id="completada" class="btn-check">
+            <label for="completada" class="estado completada flex-fill">Completada</label>
+
+          </div>
 
           <button class="btn boton-rosa w-100">Guardar cambios</button>
+
         </form>
+
       </div>
+
     </div>
   </div>
 </div>
 
-<!-- MENSAJE VACÍO -->
+{% else %}
+
+<!-- mensaje no tareas -->
 <div class="card-custom text-center mt-3">
   <p>No tienes tareas aún</p>
   <i class="fa-solid fa-xmark fa-lg" style="color: #f8b4c4"></i>
 </div>
+
+{% endif %}
 
 <!-- MODAL CREAR TAREA -->
 <div class="modal fade" id="modalTarea">
@@ -96,25 +139,35 @@
       </div>
 
       <div class="modal-body">
-        <form>
-          <input type="text" class="form-control mb-2" placeholder="Título" />
+        <form action="/crear_tarea" method="POST">
+          <!-- titulo tarea -->
+          <input type="text" class="form-control mb-2" placeholder="Título" name="titulo" />
 
-          <textarea
-            class="form-control mb-2"
-            placeholder="Descripción"
-          ></textarea>
+          <!-- descripcion tarea -->
+          <textarea class="form-control mb-2" placeholder="Descripción" name="descripcion"></textarea> </textarea>
 
-          <input type="date" class="form-control mb-2" />
+          <!-- fecha limite tarea -->
+          <label class="mb-1">Fecha limite</label>
+          <input type="date" class="form-control mb-3" name="fecha_limite" />
 
-          <label class="mb-1">Prioridad</label>
-          <select class="form-control mb-3">
-            <option>Normal</option>
-            <option>Alta </option>
-            <option>Media </option>
-            <option>Baja </option>
-          </select>
 
-          <button class="btn boton-rosa w-100">Guardar</button>
+          <!-- prioridad tarea -->
+          <label class="mb-2">Prioridad</label>
+
+          <div class="d-flex gap-2 mb-3">
+
+            <input type="radio" name="prioridad" id="alta" value="alta" class="btn-check">
+            <label for="alta" class="prioridad alta flex-fill">Alta</label>
+
+            <input type="radio" name="prioridad" id="media" value="media" class="btn-check">
+            <label for="media" class="prioridad media flex-fill">Media</label>
+
+            <input type="radio" name="prioridad" id="baja" value="baja" class="btn-check">
+            <label for="baja" class="prioridad baja flex-fill">Baja</label>
+
+          </div>
+
+          <button class="btn boton-rosa w-100">Guardar tarea</button>
         </form>
       </div>
     </div>

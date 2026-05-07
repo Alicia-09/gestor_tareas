@@ -155,3 +155,80 @@ body {
     width: 150px;
 }
 
+.prioridad {
+   text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+/* colores */
+.alta {
+    background-color: #ff6b81;
+}
+
+.media {
+    background-color: #f7b731;
+}
+
+.baja {
+    background-color: #20bf6b;
+}
+
+/* ocultar radio */
+.btn-check {
+    display: none;
+}
+
+.estado {
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    color: #4A4A4A;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+/* colores */
+
+.pendiente {
+    background-color: #FFD6E0;
+}
+
+.progreso {
+    background-color: #D6EFFF;
+}
+
+.pausada {
+    background-color: #FFF0C9;
+}
+
+.completada {
+    background-color:  #DDF8E8;
+}
+
+/* ocultar radio */
+
+.btn-check {
+    display: none;
+}
+
+/* efecto hover */
+
+.estado:hover {
+    transform: scale(1.02);
+}
+
+.prioridad-alta {
+    border-left: 6px solid #F8B4C4;
+}
+
+.prioridad-media {
+    border-left: 6px solid #B8E3FF;
+}
+
+.prioridad-baja {
+    border-left: 6px solid #C7F2D4;
+}

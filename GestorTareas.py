@@ -87,8 +87,18 @@ class GestorTareas:
             print(f"Error al obtener usuario: {e}")
             return None
     
+    def obtener_usuario(self, usuario_id: str):
+
+        usuario = self.usuarios.find_one({
+        "_id": ObjectId(usuario_id)})
+
+        if usuario:
+           usuario["_id"] = str(usuario["_id"])
+
+        return usuario
+
     def crear_tarea(self, usuario_id: str, titulo: str, descripcion: str = "", 
-                    fecha_limite: Optional[datetime] = None) -> Optional[str]:
+                    fecha_limite: Optional[datetime] = None, prioridad: str = "media") -> Optional[str]:
         """Crear una nueva tarea para un usuario"""
         # Verificar que el usuario existe
         if not self.obtener_usuario(usuario_id):
@@ -100,6 +110,7 @@ class GestorTareas:
             "titulo": titulo,
             "descripcion": descripcion,
             "estado": "pendiente",
+            "prioridad": prioridad,
             "fecha_creacion": datetime.now(),
             "fecha_limite": fecha_limite or datetime.now() + timedelta(days=7),
             "completada": False,
