@@ -85,7 +85,7 @@
           <input type="text" class="form-control mb-2" value="Título de la tarea" />
 
           <!-- descripcion -->
-          <textarea class="form-control mb-2">Descripción de la tarea</textarea>
+          <textarea class="form-control mb-2">Descripcion de la tarea</textarea>
 
           <!-- fecha -->
           <input type="date" class="form-control mb-2" />
@@ -139,16 +139,29 @@
       </div>
 
       <div class="modal-body">
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }} alert-dismissible fade show"
+                  role="alert">
+                {{ message }}
+                
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
         <form action="/crear_tarea" method="POST">
           <!-- titulo tarea -->
-          <input type="text" class="form-control mb-2" placeholder="Título" name="titulo" />
+          <input type="text" class="form-control mb-2" placeholder="Título" name="titulo"  required/>
 
           <!-- descripcion tarea -->
-          <textarea class="form-control mb-2" placeholder="Descripción" name="descripcion"></textarea> </textarea>
+          <textarea class="form-control mb-2" placeholder="Descripción" name="descripcion"></textarea>
 
           <!-- fecha limite tarea -->
           <label class="mb-1">Fecha limite</label>
-          <input type="date" class="form-control mb-3" name="fecha_limite" />
+          <input type="date" class="form-control mb-3" name="fecha_limite"  required/>
 
 
           <!-- prioridad tarea -->

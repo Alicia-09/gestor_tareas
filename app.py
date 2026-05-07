@@ -86,7 +86,11 @@ def crear_tarea():
     descripcion = request.form.get("descripcion")
     fecha_limite = request.form.get("fecha_limite")
     prioridad = request.form.get("prioridad")
-
+    
+    if not titulo or not prioridad:
+            flash('Por favor ingresa una tarea ', 'error')
+            return redirect(url_for('inicio'))
+        
     gestor = GestorTareas()
 
     gestor.crear_tarea(

@@ -156,7 +156,7 @@ body {
 }
 
 .prioridad {
-   text-align: center;
+    text-align: center;
     padding: 10px;
     border-radius: 10px;
     color: white;
@@ -226,7 +226,7 @@ body {
 }
 
 .prioridad-media {
-    border-left: 6px solid #B8E3FF;
+    border-left: 6px solid #facc58;
 }
 
 .prioridad-baja {
